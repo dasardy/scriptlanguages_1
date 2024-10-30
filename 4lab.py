@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets, QtSql, QtCore  # Импорт модуля QtWidgets из библиотеки PySide6
+from PySide6 import QtWidgets, QtSql, QtCore 
 
 import sys  
 #подключение к БД
