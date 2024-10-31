@@ -1,6 +1,5 @@
-from PySide6 import QtWidgets, QtSql, QtCore 
-
-import sys  
+import sys
+from PyQt5 import QtWidgets, QtSql, QtCore    
 #подключение к БД
 def create_connection():
     DB = QtSql.QSqlDatabase.addDatabase('QSQLITE')
