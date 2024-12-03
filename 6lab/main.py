@@ -11,66 +11,64 @@ class DataAnalyzerApp(QMainWindow):
         super().__init__()
         self.setWindowTitle('Lab6')
         self.setGeometry(100, 100, 1200, 800)
-        
-        # Initialize data
+      
         self.df = None
         
-        # Create main widget and layout
+  
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
         layout = QVBoxLayout(main_widget)
         
-        # Create top panel for plotting
         top_panel = QWidget()
         top_layout = QVBoxLayout(top_panel)
         
-        # Create matplotlib figure
+   
         self.figure = plt.Figure(figsize=(10, 6))
         self.canvas = FigureCanvas(self.figure)
         top_layout.addWidget(self.canvas)
         
-        # Create bottom panel for controls
+     
         bottom_panel = QWidget()
         bottom_layout = QHBoxLayout(bottom_panel)
         
-        # Create controls widget
+      
         controls_widget = QWidget()
         controls_layout = QHBoxLayout(controls_widget)
         
-        # Left controls section
+      
         left_controls = QWidget()
         left_controls_layout = QVBoxLayout(left_controls)
         
-        # Add load data button
+       
         self.load_button = QPushButton('Загрузить файл')
         self.load_button.clicked.connect(self.load_data)
         left_controls_layout.addWidget(self.load_button)
         
-        # Add graph type selector
+       
         self.graph_type = QComboBox()
         self.graph_type.addItems(['Линейный график', 'Гистограмма', 'Круговая диаграмма'])
         self.graph_type.currentIndexChanged.connect(self.update_plot)
         left_controls_layout.addWidget(QLabel('Выберите тип графика:'))
         left_controls_layout.addWidget(self.graph_type)
         
-        # Middle controls section (Statistics)
+        
         middle_controls = QWidget()
         middle_controls_layout = QVBoxLayout(middle_controls)
         
-        # Add statistics display
+       
         self.stats_display = QTextEdit()
         self.stats_display.setReadOnly(True)
         self.stats_display.setMaximumHeight(150)
         middle_controls_layout.addWidget(QLabel('Статистистика:'))
         middle_controls_layout.addWidget(self.stats_display)
         
-        # Right controls section (Manual Entry)
+        
         right_controls = QWidget()
         right_controls_layout = QVBoxLayout(right_controls)
         
         right_controls_layout.addWidget(QLabel('Добавить новую запись:'))
         
-        # Create a horizontal layout for input fields
+        
         input_fields = QWidget()
         input_layout = QHBoxLayout(input_fields)
         
@@ -94,14 +92,14 @@ class DataAnalyzerApp(QMainWindow):
         self.add_data_button.clicked.connect(self.add_manual_data)
         right_controls_layout.addWidget(self.add_data_button)
         
-        # Add all controls to the bottom layout
+      
         controls_layout.addWidget(left_controls)
         controls_layout.addWidget(middle_controls)
         controls_layout.addWidget(right_controls)
         
         bottom_layout.addWidget(controls_widget)
         
-        # Add panels to main layout
+       
         layout.addWidget(top_panel, stretch=2)
         layout.addWidget(bottom_panel, stretch=1)
 
@@ -163,13 +161,13 @@ class DataAnalyzerApp(QMainWindow):
             new_row = pd.DataFrame(new_data)
             self.df = pd.concat([self.df, new_row], ignore_index=True)
             
-            # Clear input fields
+         
             self.date_input.clear()
             self.value1_input.clear()
             self.value2_input.clear()
             self.category_input.clear()
             
-            # Update display
+        
             self.update_statistics()
             self.update_plot()
             
